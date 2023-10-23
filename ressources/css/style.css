@@ -7,45 +7,52 @@
 h1{
     position: relative;
     background-color: cyan;
-    background-image: url('beau-tir-lac-cristallin-cote-base-montagne-enneigee-au-cours-journee-ensoleillee.jgp');
+    background-image: url('beau-tir-lac-cristallin-cote-base-montagne-enneigee-au-cours-journee-ensoleillee.jgp'); /*background-image problem*/
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center, center;
     height: 25%;
     margin: 0%;
-    color: white;
+    color: white;/* font color*/
 }
 
 h2{
-    border-bottom: 2px solid rgb(189, 189, 189);
+    border-bottom: 2px solid rgb(189, 189, 189); /* bottom border of the "title" of the page*/
 }
 
 header p{
+    display: flex;
     font-style: italic;
     justify-content: flex-end;
 }
 
 nav{
     display: flex ;
+    justify-content: space-between;
     background-color: rgb(189, 189, 189);
 }
  ul{
     display: flex;
     justify-content: space-between;
-    list-style: none; /*remove items from the list*/
+    list-style: none; /*remove items from the list, remove the "puces"*/
  }
  li{
     margin-right: 10%;
  }
-
+ /* change the color when you mouve the mouse on the text.
+ li :hover{
+    background-color: rgb(255, 255, 255);
+    color:rgb(0, 164, 226)
+ }
+*/
 .hamburger img{
-    display: none;
+    visibility: hidden;/* don't show the icone*/
 }
 
 main{
     display: flex;
     background-color: orange;
-    overflow: auto;
+    overflow: auto; /* scroll bar*/
     margin-top: 1%;
     margin-bottom: 1%;
 }
