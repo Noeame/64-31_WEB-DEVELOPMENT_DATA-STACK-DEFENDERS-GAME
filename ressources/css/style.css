@@ -32,6 +32,7 @@ h1{
     justify-content: flex-end;
     padding-left: 2%;
     padding-bottom: 2%;
+    text-shadow: 0 0 25px whitesmoke;
 }
 
 nav{
@@ -50,6 +51,22 @@ nav{
  li{
     margin-right: 10%;
  }
+
+ li a{
+    color: inherit;
+    text-decoration: none;
+    background-color:rgb(189, 189, 189);
+    padding: 1.66vh;
+    position: relative;
+ }
+
+ ul li.active a:visited {
+    color: rgb(0, 164, 226);
+    background-color: white;
+    position: relative;
+    
+}
+
  /* change the color when you mouve the mouse on the text.
  li :hover{
     background-color: rgb(255, 255, 255);
@@ -100,7 +117,7 @@ aside{
     margin-right: 2%;
     border: 1px solid grey;
     border-radius: 5%;
-
+    box-shadow: 0 0 25px grey;
 }
 
 div h3{
@@ -111,7 +128,6 @@ div h3{
     border-top-left-radius: 5%;
     text-align: start;
     color: white;
-
 }
 
 /* ---- footer part ---- height 15% ---- */
@@ -121,14 +137,13 @@ footer{
     text-align: right;
     height: 15%;
     padding-right: 2%;
+    display: flex;
+    justify-content: flex-end;
 }
-
-/*
-#logo{
-    margin-top: 1%;
-    margin-bottom: 1%;
+#logo {
+    margin-top: 2%;
+    margin-bottom: %;
 }
-*/
 
 /*
 @media (max-width: 768px) {
