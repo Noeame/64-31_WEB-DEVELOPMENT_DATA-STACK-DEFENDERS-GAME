@@ -4,37 +4,48 @@
     box-sizing: border-box;
   }
 
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+  /* ---- Header part ---- height 30% ---- */ 
+
+header{
+    height: 30%;
+}
 h1{
     position: relative;
-    background-color: cyan;
-    background-image: url('beau-tir-lac-cristallin-cote-base-montagne-enneigee-au-cours-journee-ensoleillee.jgp'); /*background-image problem*/
+    background-image: url('../images/beau-tir-lac-cristallin-cote-base-montagne-enneigee-au-cours-journee-ensoleillee.jpg'); /*background-image problem*/
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center, center;
-    height: 25%;
-    margin: 0%;
+    height: 80%;
+    margin: 0;
     color: white;/* font color*/
-}
-
-h2{
-    border-bottom: 2px solid rgb(189, 189, 189); /* bottom border of the "title" of the page*/
-}
-
-header p{
+    font-size: 4vh;
+    font-family: Montserrat;
     display: flex;
-    font-style: italic;
+    flex-direction: column;
     justify-content: flex-end;
+    padding-left: 2%;
+    padding-bottom: 2%;
 }
 
 nav{
     display: flex ;
     justify-content: space-between;
     background-color: rgb(189, 189, 189);
+    height: 20%;
 }
  ul{
     display: flex;
     justify-content: space-between;
     list-style: none; /*remove items from the list, remove the "puces"*/
+    font-size: 2vh;
+    font-family: Montserrat;
  }
  li{
     margin-right: 10%;
@@ -49,40 +60,47 @@ nav{
     visibility: hidden;/* don't show the icone*/
 }
 
+/* ---- Main part ---- height 55% ---- */
+
+h2{
+    font-size: 3vh;
+    border-bottom: 2px solid rgb(189, 189, 189); /* bottom border of the "title" of the page*/
+}
+
+header p{
+    display: flex;
+    font-style: italic;
+    justify-content: flex-end;
+    font-size: 2vh;
+    font-family: Montserrat;
+}
 main{
     display: flex;
     background-color: orange;
     overflow: auto; /* scroll bar*/
-    margin-top: 1%;
-    margin-bottom: 1%;
+    /*margin-top: 1%;
+    /*margin-bottom: 1%;*/
+    height: 55%;
+    font-size: 2vh;
+    font-family: Montserrat;
 }
-section{
+section{/*article*/
     background-color: blueviolet;
-    width: 75%;
+    width: 100%;
     display: inline-block;
     margin-left: 2%;
+    margin-right: 2%;
+    font-size: 2vh;
 }
 
 aside{
     width: 25%;
     display: inline-block;
     text-align: center;
-    margin-left: 2%;
     margin-right: 2%;
     border: 1px solid grey;
     border-radius: 5%;
 
-}
-
-footer{
-    background-color: rgb(189, 189, 189);
-    text-align: right;
-    padding-right: 2%;
-}
-
-#logo{
-    margin-top: 1%;
-    margin-bottom: 1%;
 }
 
 div h3{
@@ -92,8 +110,25 @@ div h3{
     border-top-right-radius: 5%;
     border-top-left-radius: 5%;
     text-align: start;
+    color: white;
+
 }
 
+/* ---- footer part ---- height 15% ---- */
+
+footer{
+    background-color: rgb(189, 189, 189);
+    text-align: right;
+    height: 15%;
+    padding-right: 2%;
+}
+
+/*
+#logo{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+*/
 
 /*
 @media (max-width: 768px) {
@@ -108,3 +143,14 @@ div h3{
 }
 -> pour l'écran de téléphone il faut display l'icone Hamburger
 */
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+
+    section, aside {
+        width: 100%;
+        margin-right: 0;
+    }
+}
