@@ -358,6 +358,9 @@ main::-webkit-scrollbar-thumb:hover {
     position: relative;
     padding-top: 25%;
     overflow: hidden;
+    text-align: center;
+    position: relative;
+    margin-bottom: 20px;
 }
 
 .wd__art--images.full--screen {
@@ -401,6 +404,17 @@ main::-webkit-scrollbar-thumb:hover {
     resized to fit entirely inside the parent container, without 
     distorting its proportions, ensuring that the entire image is 
     visible without clipping.*/
+}
+
+.wd__art--images .image figcaption {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    font-size: 2hv;
+    margin-top: 10px;
+    width: 100%; 
+    box-sizing: border-box;
+    position: relative;
 }
 
 .art--content-inner h6 {
