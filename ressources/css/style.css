@@ -180,6 +180,45 @@ th {
     background-color: #f2f2f2;
 }
 
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    tr {
+        display: flex;
+        align-items: stretch;
+    }
+
+    th, td {
+        flex: 1; 
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ccc;
+    }
+
+    
+    /*th, td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: left;
+        margin-bottom: 10px;
+        width: 25%; 
+        float: left; 
+        font-weight: bold;
+        height: 50px;
+    }*/
+    th p, td p {
+        margin: 0;
+        height: 100%; /* La hauteur est définie à 100% pour s'adapter à la hauteur de la cellule parente */
+    }
+    
+    
+}
+
+
 
 /* ---- footer part ---- height 15% ---- */
 
