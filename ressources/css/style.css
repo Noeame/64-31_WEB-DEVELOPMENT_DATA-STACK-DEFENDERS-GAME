@@ -196,9 +196,17 @@ th {
         padding: 10px;
         text-align: left;
         border: 1px solid #ccc;
+        width: 25%;
+        overflow-wrap: break-word;
+        /*word-wrap: break-word;
+        hyphens: auto;*/
     }
 
-    
+    th p, td p {
+        margin: 0;
+        height: 100%; 
+    }
+
     /*th, td {
         display: block;
         width: 100%;
@@ -210,10 +218,7 @@ th {
         font-weight: bold;
         height: 50px;
     }*/
-    th p, td p {
-        margin: 0;
-        height: 100%; /* La hauteur est définie à 100% pour s'adapter à la hauteur de la cellule parente */
-    }
+
     
     
 }
@@ -235,6 +240,8 @@ footer {
     margin-top: 2%;
     /* margin-bottom: %; */
 }
+
+/* ---- legend part ---- */
 
 
 /*
