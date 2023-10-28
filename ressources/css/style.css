@@ -161,6 +161,25 @@ div h3 {
     color: white;
 }
 
+/* ---- table part ---- */
+table {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
 
 /* ---- footer part ---- height 15% ---- */
 
