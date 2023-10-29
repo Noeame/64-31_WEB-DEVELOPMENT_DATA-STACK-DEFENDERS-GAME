@@ -218,9 +218,12 @@ th {
         font-weight: bold;
         height: 50px;
     }*/
+    
+}
 
-    
-    
+/* ---- links center -> "for the flow page" ---- */
+article div p a {
+    text-align: center;
 }
 
 
