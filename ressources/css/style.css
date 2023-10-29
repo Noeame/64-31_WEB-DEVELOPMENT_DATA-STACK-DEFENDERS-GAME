@@ -413,7 +413,7 @@ main::-webkit-scrollbar-thumb:hover {
     background-color: rgba(0, 0, 0, 0.7);
     color: white;
     padding: 10px;
-    font-size: 2hv;
+    font-size: 2vh;
     margin-top: 10px;
     width: 100%; 
     box-sizing: border-box;
@@ -448,6 +448,14 @@ main::-webkit-scrollbar-thumb:hover {
 .wd__art--full-content {
     margin-top: 20px;
 }
+
+.wd__description--assets a {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+}
+
 
 @media(max-width:991px) {
     aside {
