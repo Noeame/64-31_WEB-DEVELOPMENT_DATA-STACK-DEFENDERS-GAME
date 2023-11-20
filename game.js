@@ -49,8 +49,9 @@ function newBlocks() {
     ropes[current] = {
         x: blocks[current].x + blocks[current].width / 2,
         y: 0,
-        length: blocks[current].y - blocks[current - 1].y  // Adjust the length of the rope
+        length: canvas.height - blocks[current].y  // Adjust the length of the rope
     };
+    
 }
 
 function gameOver() {
@@ -136,14 +137,16 @@ function animate() {
 
 function restart() {
     blocks.splice(1, blocks.length - 1);
-    ropes.splice(1, ropes.length - 1);
+   // ropes.splice(1, ropes.length - 1);
     mode = 'bounce';
     cameraY = 0;
     scrollCounter = 0;
     xSpeed = 2;
     current = 1;
     newBlocks();
+
     scrap.y = 0;
+    
 }
 
 canvas.onpointerdown = function () {
