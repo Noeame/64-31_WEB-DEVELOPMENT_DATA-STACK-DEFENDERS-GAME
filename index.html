@@ -2,9 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Stack Jump Game</title>
+    <title>Stacker Game</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        img {
+            width: 100%
+        }
+
+        html {
+            background: #fff;
+            height: 100%
+        }
+
         body {
+            font-family: "fantasy",fantasy,'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             margin: 0;
             display: flex;
             justify-content: center;
@@ -12,13 +27,124 @@
             height: 100vh;
             background-color: #f0f0f0;
         }
+
+        @media screen and (min-height: 560px) {
+            html {
+                font-size: 100px;
+            }
+        }
+
+        @media screen and (min-height: 720px) {
+            html {
+                font-size: 125px;
+            }
+        }
+
+        @media screen and (min-height: 880px) {
+            html {
+                font-size: 150px;
+            }
+        }
+
+        @media screen and (min-height: 960px) {
+            html {
+                font-size: 162.5px;
+            }
+        }
+
+        @media screen and (min-height: 1040px) {
+            html {
+                font-size: 180px;
+            }
+        }
+
+        @media screen and (min-height: 1200px) {
+            html {
+                font-size: 200px;
+            }
+        }
+
+        html {
+            font-size: 17.5vh;
+        }
+
         canvas {
-            border: 1px solid #000;
+            background-color: greenyellow;
+            border: 1px solid greenyellow;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto
         }
     </style>
 </head>
 <body>
 <canvas id="myCanvas" width="800" height="600"></canvas>
+<script src="animateFct.js"></script> <!-- Link to your JavaScript animateFct file -->
 <script src="game.js"></script> <!-- Link to your JavaScript game file -->
+
+<!-- Additional code for the preparation of the game (if needed) -->
+<script>
+    // Window Size Initialization
+    var gameWidth = window.innerWidth;
+    var gameHeight = window.innerHeight;
+    var ratio = 1.5;
+    if (gameHeight / gameWidth < ratio) {
+        gameWidth = Math.ceil(gameHeight / ratio);
+    }
+    $('.content').css({ "height": gameHeight + "px", "width": gameWidth + "px" });
+    $('.js-modal-content').css({ "width": gameWidth + "px" });
+
+    // Loading Animation Functions
+    function hideLoading() {
+        if (domReady && canvasReady) {
+            $('#canvas').show();
+            loadFinish = true;
+            setTimeout(function () {
+                $('.loading').hide();
+                $('.landing').show();
+            }, 1000);
+        }
+    }
+
+    function updateLoading(status) {
+        var success = status.success;
+        var total = status.total;
+        var failed = status.failed;
+        if (failed > 0 && !loadError) {
+            loadError = true;
+            alert('Network error... Please try again.');
+            return;
+        }
+        var percent = parseInt((success / total) * 100);
+        if (percent === 100 && !canvasReady) {
+            canvasReady = true;
+            hideLoading();
+        }
+        percent = percent > 98 ? 98 : percent;
+        percent = percent + '%';
+        $('.loading .title').text(percent);
+        $('.loading .percent').css({
+            'width': percent
+        });
+    }
+
+    // Index Hide Function
+    function indexHide() {
+        $('.landing .action-1').addClass('slideTop');
+        $('.landing .action-2').addClass('slideBottom');
+        setTimeout(function () {
+            $('.landing').hide();
+        }, 950);
+    }
+
+    // Window Load Event Listener
+    window.addEventListener('load', function () {
+        domReady = true;
+        hideLoading();
+    }, false);
+</script>
+
 </body>
 </html>

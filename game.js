@@ -1,10 +1,23 @@
 let canvas = document.getElementById("myCanvas");
 let context = canvas.getContext("2d");
 context.font = 'bold 30px sans-serif';
+
+// Set background image
+let backgroundImage = new Image();
+backgroundImage.src = 'background.png';
+
+// Ensure the background image is loaded before starting the animation
+backgroundImage.onload = function () {
+    // Start the animation loop after the background image is loaded
+    restart();  // Start the game logic
+    animate();  // Start the animation loop
+};
+
 let scrollCounter, cameraY, current, mode, xSpeed;
 let ySpeed = 5;
 let height = 50; // Adjust based on your image size
 let blocks = [];
+let ropes = [];
 blocks[0] = {
     x: 300,
     y: 300,
@@ -18,13 +31,11 @@ let scrap = {
 let towerImage = new Image();
 towerImage.src = 'block.png'; // Image path
 
-towerImage.onload = function() {
+towerImage.onload = function () {
     console.log("Image loaded successfully");
-    restart();
-    animate();
 };
 
-towerImage.onerror = function() {
+towerImage.onerror = function () {
     console.error("Error loading the image");
 };
 
@@ -34,6 +45,12 @@ function newBlocks() {
         y: (current + 10) * height,
         width: blocks[current - 1].width
     };
+
+    ropes[current] = {
+        x: blocks[current].x + blocks[current].width / 2,
+        y: 0,
+        length: blocks[current].y - blocks[current - 1].y  // Adjust the length of the rope
+    };
 }
 
 function gameOver() {
@@ -42,24 +59,27 @@ function gameOver() {
 }
 
 function animate() {
-    // Set the background color to black
-    context.fillStyle = 'black';
-    context.fillRect(0, 0, canvas.width, canvas.height);
+    // Draw the background image first
+    context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
     if (mode != 'gameOver') {
-        context.font = 'bold 30px sans-serif';
+        context.font = 'fantasy';
         context.fillStyle = 'white'; // Set text color to white for visibility
         context.fillText('Score: ' + (current - 1).toString(), 100, 200);
+
         // Movement and collision logic
         if (mode == 'bounce') {
             blocks[current].x += xSpeed;
+            ropes[current].x += xSpeed; // Move the rope along with the block
             if (xSpeed > 0 && blocks[current].x + blocks[current].width > canvas.width)
                 xSpeed = -xSpeed;
             if (xSpeed < 0 && blocks[current].x < 0)
                 xSpeed = -xSpeed;
         }
+
         if (mode == 'fall') {
             blocks[current].y -= ySpeed;
+            ropes[current].y -= ySpeed; // Move the rope along with the block
             if (blocks[current].y <= blocks[current - 1].y + height) {
                 mode = 'bounce';
                 let difference = blocks[current].x - blocks[current - 1].x;
@@ -93,6 +113,12 @@ function animate() {
             scrollCounter--;
         }
 
+        // Drawing the ropes from the ceiling to the blocks
+        context.fillStyle = '#FFFF';
+        ropes.forEach(rope => {
+            context.fillRect(rope.x, rope.y, 2, rope.length);
+        });
+
         // Drawing the blocks with the image
         for (let n = 0; n < blocks.length; n++) {
             let block = blocks[n];
@@ -103,11 +129,14 @@ function animate() {
         if (scrap.width > 0) {
             context.drawImage(towerImage, scrap.x, 600 - scrap.y + cameraY, scrap.width, height);
         }
+
+        window.requestAnimationFrame(animate);
     }
-    window.requestAnimationFrame(animate);
 }
+
 function restart() {
     blocks.splice(1, blocks.length - 1);
+    ropes.splice(1, ropes.length - 1);
     mode = 'bounce';
     cameraY = 0;
     scrollCounter = 0;
@@ -117,16 +146,11 @@ function restart() {
     scrap.y = 0;
 }
 
-canvas.onpointerdown = function() {
+canvas.onpointerdown = function () {
     if (mode == 'gameOver')
         restart();
     else {
         if (mode == 'bounce')
             mode = 'fall';
     }
-};
-
-towerImage.onload = function() {
-    restart();
-    animate();
 };
