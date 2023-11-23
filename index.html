@@ -6,145 +6,75 @@
     <style>
         * {
             margin: 0;
-            padding: 0
+            padding: 0;
         }
 
         img {
-            width: 100%
+            width: 100%;
+            height: auto; /* To maintain the aspect ratio of the image */
         }
 
-        html {
-            background: #fff;
-            height: 100%
+        html, body {
+            height: 100%;
+            overflow: hidden;
         }
 
-        body {
-            font-family: "fantasy",fantasy,'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            margin: 0;
+        #container {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
         }
 
-        @media screen and (min-height: 560px) {
-            html {
-                font-size: 100px;
-            }
+        #leftImage, #rightImage {
+            flex: 1;
+            overflow: hidden;
         }
 
-        @media screen and (min-height: 720px) {
-            html {
-                font-size: 125px;
-            }
+        #leftImage img, #rightImage img {
+            height: 100%;
+            width: auto;
         }
 
-        @media screen and (min-height: 880px) {
-            html {
-                font-size: 150px;
-            }
-        }
-
-        @media screen and (min-height: 960px) {
-            html {
-                font-size: 162.5px;
-            }
-        }
-
-        @media screen and (min-height: 1040px) {
-            html {
-                font-size: 180px;
-            }
-        }
-
-        @media screen and (min-height: 1200px) {
-            html {
-                font-size: 200px;
-            }
-        }
-
-        html {
-            font-size: 17.5vh;
-        }
-
-        canvas {
+        #canvas {
             background-color: greenyellow;
             border: 1px solid greenyellow;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            margin: auto
+            flex: 2;
+            margin: auto;
+            max-height: 100%;
+        }
+
+        #leftImage, #rightImage {
+            max-width: 40%; /* Adjust the width of the left and right images */
         }
     </style>
 </head>
 <body>
-<canvas id="myCanvas" width="800" height="600"></canvas>
-<script src="animateFct.js"></script> <!-- Link to your JavaScript animateFct file -->
-<script src="game.js"></script> <!-- Link to your JavaScript game file -->
+<div id="container">
+    <div id="leftImage">
+        <img src="pageLeft.png" alt="Left Image">
+    </div>
+    <canvas id="myCanvas" width="800" height="600"></canvas>
+    <div id="rightImage">
+        <img src="pageRight.png" alt="Right Image">
+    </div>
+</div>
 
-<!-- Additional code for the preparation of the game (if needed) -->
+<script src="animateFct.js"></script>
+<script src="game.js"></script>
 <script>
-    // Window Size Initialization
     var gameWidth = window.innerWidth;
     var gameHeight = window.innerHeight;
     var ratio = 1.5;
     if (gameHeight / gameWidth < ratio) {
         gameWidth = Math.ceil(gameHeight / ratio);
     }
-    $('.content').css({ "height": gameHeight + "px", "width": gameWidth + "px" });
-    $('.js-modal-content').css({ "width": gameWidth + "px" });
 
-    // Loading Animation Functions
-    function hideLoading() {
-        if (domReady && canvasReady) {
-            $('#canvas').show();
-            loadFinish = true;
-            setTimeout(function () {
-                $('.loading').hide();
-                $('.landing').show();
-            }, 1000);
-        }
-    }
+    // Additional setup code here
 
-    function updateLoading(status) {
-        var success = status.success;
-        var total = status.total;
-        var failed = status.failed;
-        if (failed > 0 && !loadError) {
-            loadError = true;
-            alert('Network error... Please try again.');
-            return;
-        }
-        var percent = parseInt((success / total) * 100);
-        if (percent === 100 && !canvasReady) {
-            canvasReady = true;
-            hideLoading();
-        }
-        percent = percent > 98 ? 98 : percent;
-        percent = percent + '%';
-        $('.loading .title').text(percent);
-        $('.loading .percent').css({
-            'width': percent
-        });
-    }
-
-    // Index Hide Function
-    function indexHide() {
-        $('.landing .action-1').addClass('slideTop');
-        $('.landing .action-2').addClass('slideBottom');
-        setTimeout(function () {
-            $('.landing').hide();
-        }, 950);
-    }
-
-    // Window Load Event Listener
     window.addEventListener('load', function () {
-        domReady = true;
-        hideLoading();
+        // Your existing code for window load event
     }, false);
 </script>
-
 </body>
 </html>

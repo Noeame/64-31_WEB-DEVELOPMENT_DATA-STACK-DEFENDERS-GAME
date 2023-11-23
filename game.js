@@ -51,7 +51,6 @@ function newBlocks() {
         y: 0,
         length: canvas.height - blocks[current].y  // Adjust the length of the rope
     };
-    
 }
 
 function gameOver() {
@@ -59,9 +58,32 @@ function gameOver() {
     context.fillText('Game over!', 50, 50);
 }
 
+function backgroundLinearGradient() {
+    const grad = context.createLinearGradient(0, 0, 0, canvas.height);
+    grad.addColorStop(0, '#FF9666'); // Adjust gradient colors as needed
+    grad.addColorStop(1, '#8E5B54');
+    context.fillStyle = grad;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function backgroundImg() {
+    const bgWidth = backgroundImage.width;
+    const bgHeight = backgroundImage.height;
+    const zoomedHeight = (bgHeight * canvas.width) / bgWidth;
+    let offsetHeight = canvas.height - zoomedHeight + cameraY;
+
+    if (offsetHeight > canvas.height) {
+        offsetHeight = canvas.height;
+    }
+
+    // Draw the moving background image
+    context.drawImage(backgroundImage, 0, offsetHeight, canvas.width, zoomedHeight);
+}
+
 function animate() {
-    // Draw the background image first
-    context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+    // Draw the background first
+    backgroundLinearGradient();
+    backgroundImg();
 
     if (mode != 'gameOver') {
         context.font = 'fantasy';
@@ -71,26 +93,34 @@ function animate() {
         // Movement and collision logic
         if (mode == 'bounce') {
             blocks[current].x += xSpeed;
-            ropes[current].x += xSpeed; // Move the rope along with the block
-            if (xSpeed > 0 && blocks[current].x + blocks[current].width > canvas.width)
+            ropes[current].x += xSpeed;
+
+            if (xSpeed > 0 && blocks[current].x + blocks[current].width > canvas.width) {
                 xSpeed = -xSpeed;
-            if (xSpeed < 0 && blocks[current].x < 0)
+            }
+
+            if (xSpeed < 0 && blocks[current].x < 0) {
                 xSpeed = -xSpeed;
+            }
         }
 
         if (mode == 'fall') {
             blocks[current].y -= ySpeed;
-            ropes[current].y -= ySpeed; // Move the rope along with the block
+            ropes[current].y -= ySpeed;
+
             if (blocks[current].y <= blocks[current - 1].y + height) {
                 mode = 'bounce';
                 let difference = blocks[current].x - blocks[current - 1].x;
+
                 if (Math.abs(difference) >= blocks[current].width) {
                     gameOver();
                 }
+
                 scrap = {
                     y: blocks[current].y,
                     width: difference
                 };
+
                 if (blocks[current].x > blocks[current - 1].x) {
                     blocks[current].width -= difference;
                     scrap.x = blocks[current].x + blocks[current].width;
@@ -99,16 +129,21 @@ function animate() {
                     blocks[current].width += difference;
                     blocks[current].x = blocks[current - 1].x;
                 }
-                if (xSpeed > 0)
+
+                if (xSpeed > 0) {
                     xSpeed++;
-                else
+                } else {
                     xSpeed--;
+                }
+
                 current++;
                 scrollCounter = height;
                 newBlocks();
             }
         }
+
         scrap.y -= ySpeed;
+
         if (scrollCounter) {
             cameraY++;
             scrollCounter--;
@@ -123,7 +158,7 @@ function animate() {
         // Drawing the blocks with the image
         for (let n = 0; n < blocks.length; n++) {
             let block = blocks[n];
-            context.drawImage(towerImage, block.x, 600 - block.y + cameraY, block.width, height);
+            context.drawImage(towerImage, block.x, 600 - block.y + cameraY, block.width, height* 1.35);
         }
 
         // Drawing the scrap with the image (if needed)
@@ -137,7 +172,6 @@ function animate() {
 
 function restart() {
     blocks.splice(1, blocks.length - 1);
-   // ropes.splice(1, ropes.length - 1);
     mode = 'bounce';
     cameraY = 0;
     scrollCounter = 0;
@@ -146,14 +180,14 @@ function restart() {
     newBlocks();
 
     scrap.y = 0;
-    
 }
 
 canvas.onpointerdown = function () {
-    if (mode == 'gameOver')
+    if (mode == 'gameOver') {
         restart();
-    else {
-        if (mode == 'bounce')
+    } else {
+        if (mode == 'bounce') {
             mode = 'fall';
+        }
     }
 };
