@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Stacker Game</title>
+
+    
+        <meta charset="UTF-8">
+        
+        <link rel="stylesheet" href="style.css"> <!-- Add this line -->
+        <!-- Other existing styles -->
+  
+   
+    <title>Login Form Animation CSS</title>
     <style>
         * {
             margin: 0;
@@ -11,7 +19,7 @@
 
         img {
             width: 100%;
-            height: auto; /* To maintain the aspect ratio of the image */
+            height: auto;
         }
 
         html, body {
@@ -45,36 +53,98 @@
         }
 
         #leftImage, #rightImage {
-            max-width: 40%; /* Adjust the width of the left and right images */
+            max-width: 40%;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Add your existing styles for the login form here */
+        .login-box {
+            /* Your styling for the login box */
         }
     </style>
 </head>
+
 <body>
-<div id="container">
-    <div id="leftImage">
-        <img src="pageLeft.png" alt="Left Image">
+
+    <!-- Login Page -->
+    <div class="login-box">
+        <form action="#" onsubmit="showGame(); return false;">
+            <!-- Your existing login form code -->
+            <input type="checkbox" class="input-check" id="input-check">
+            <label for="input-check" class="toggle"></label>
+            <span class="text off">off</span>
+            <span class="text on"></span>
+            </label>
+            <div class="login-light"></div>
+            <h2>Login</h2>
+            <div class="input-box">
+                <span class="icon"></span>
+                <input type="email" required>
+                <label>Email</label>
+            </div>
+            <div class="input-box">
+                <span class="icon"></span>
+                <input type="password" required>
+                <label>Password</label>
+            </div>
+            <div class="remember-forgot">
+                <label>
+                    <input type="checkbox">Remember me
+                </label>
+                <a href="#">Forgot Password?</a>
+            </div>
+            <button type="submit">Login</button>
+            <div class="register-link">
+                <p>Don't have an account?
+                    <a href="#">Register</a></p>
+            </div>
+        </form>
     </div>
-    <canvas id="myCanvas" width="800" height="600"></canvas>
-    <div id="rightImage">
-        <img src="pageRight.png" alt="Right Image">
+
+    <!-- Game Container -->
+    <div id="game-container" class="hidden">
+        <div id="container">
+            <div id="leftImage">
+                <img src="pageLeft.png" alt="Left Image">
+            </div>
+            <canvas id="myCanvas" width="800" height="600"></canvas>
+            <div id="rightImage">
+                <img src="pageRight.png" alt="Right Image">
+            </div>
+        </div>
     </div>
-</div>
 
-<script src="animateFct.js"></script>
-<script src="game.js"></script>
-<script>
-    var gameWidth = window.innerWidth;
-    var gameHeight = window.innerHeight;
-    var ratio = 1.5;
-    if (gameHeight / gameWidth < ratio) {
-        gameWidth = Math.ceil(gameHeight / ratio);
-    }
+    <script src="animateFct.js"></script>
+    <script src="game.js"></script>
 
-    // Additional setup code here
+    <script>
+        function showGame() {
+          // Simply hide the login box and show the game container
+          document.querySelector('.login-box').style.display = 'none';
+        document.getElementById('game-container').classList.remove('hidden');
 
-    window.addEventListener('load', function () {
-        // Your existing code for window load event
-    }, false);
-</script>
+        // Start the game
+        restart();
+        animate();
+        }
+
+        var gameWidth = window.innerWidth;
+        var gameHeight = window.innerHeight;
+        var ratio = 1.5;
+        if (gameHeight / gameWidth < ratio) {
+            gameWidth = Math.ceil(gameHeight / ratio);
+        }
+
+        // Additional setup code here
+
+        window.addEventListener('load', function () {
+            // Your existing code for window load event
+        }, false);
+    </script>
+
 </body>
+
 </html>
