@@ -117,6 +117,34 @@
         </div>
     </div>
 
+
+<!-- new divs for audo and so -->
+
+
+<!-- Div to show audio -->
+<div style="margin-top:450px;margin-left:740px ; position:absolute;">
+    <audio src="raining-village.mp3" style="display: none;" id="audio" autoplay loop></audio>
+    <button type="button" onclick="aud_play_pause()">
+      <img id="audioMute" src="audioOn.png" width="35" height="35" alt="sound" style="display: none;" /> 
+      <img id="audioActive" src="audioOff.png" width="35" height="35" alt="sound" /> 
+    </button>
+ </div>
+ 
+ <!-- Div to show game over image and replay image -->
+ <div id="divRestart" style="margin:.1rem;position:absolute; display: none;">
+     <img id="gameOver" src="gameOver.png" style="display: block;" /> 
+     <img id="restart" src="restartButton.png" style="display: block;" onclick="reloadGame()"/> 
+ </div>
+
+
+
+
+
+
+
+
+
+
     <script src="animateFct.js"></script>
     <script src="game.js"></script>
 
@@ -138,11 +166,102 @@
             gameWidth = Math.ceil(gameHeight / ratio);
         }
 
-        // Additional setup code here
+        // Additional setup code here- new
+
+
+
+
+
+        // Loading Animation Functions
+    function hideLoading() {
+        if (domReady && canvasReady) {
+            $('#canvas').show();
+            loadFinish = true;
+            setTimeout(function () {
+                $('.loading').hide();
+                $('.landing').show();
+            }, 1000);
+        }
+    }
+
+    function updateLoading(status) {
+        var success = status.success;
+        var total = status.total;
+        var failed = status.failed;
+        if (failed > 0 && !loadError) {
+            loadError = true;
+            alert('Network error... Please try again.');
+            return;
+        }
+        var percent = parseInt((success / total) * 100);
+        if (percent === 100 && !canvasReady) {
+            canvasReady = true;
+            hideLoading();
+        }
+        percent = percent > 98 ? 98 : percent;
+        percent = percent + '%';
+        $('.loading .title').text(percent);
+        $('.loading .percent').css({
+            'width': percent
+        });
+    }
+
+    // Index Hide Function
+    function indexHide() {
+        $('.landing .action-1').addClass('slideTop');
+        $('.landing .action-2').addClass('slideBottom');
+        setTimeout(function () {
+            $('.landing').hide();
+        }, 950);
+    }
+
+
+    function aud_play_pause() {
+      var myAudio = document.getElementById("audio");
+      var btn1 = document.getElementById("audioMute");
+      var btn2 = document.getElementById("audioActive");
+      if (myAudio.paused) {
+         myAudio.play();        
+      } else {
+         myAudio.pause();    
+      }
+      showAudioButton();
+    }
+
+    function showAudioButton(){
+        var myAudio = document.getElementById("audio");
+        var btn1 = document.getElementById("audioMute");
+        var btn2 = document.getElementById("audioActive");
+        if (myAudio.paused) {
+         btn2.style.display = 'block';
+         btn1.style.display = 'none';
+      } else {
+         btn2.style.display = 'none';
+         btn1.style.display = 'block';
+      }
+    }
+
+    // Restart game on reloading the page
+    function reloadGame(){
+         window.location.reload();
+         var eltRestart = document.getElementById("divRestart");
+    }
+
+
+
+
+    
+
+
+
 
         window.addEventListener('load', function () {
-            // Your existing code for window load event
-        }, false);
+            domReady = true;
+        hideLoading();
+        showAudioButton();
+    }, false);
+
+
     </script>
 
 </body>

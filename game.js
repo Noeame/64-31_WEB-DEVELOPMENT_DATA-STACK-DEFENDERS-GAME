@@ -1,6 +1,27 @@
+    
+const clouds = ['c1.png', 'c2.png', 'c3.png'];
+const randomImg = array => (array[Math.floor(Math.random() * array.length)]);
+imgName = randomImg(clouds);
+let cloudImage = new Image();
+cloudImage.src = imgName;
+const maxFailed = 3
+let failedCount = maxFailed;
+
+    
     let canvas = document.getElementById("myCanvas");
+const audio = document.getElementById("audio");
+const eltRestart = document.getElementById("divRestart");
     let context = canvas.getContext("2d");
     context.font = 'bold 30px sans-serif';
+
+let heartImg = new Image();
+heartImg.src = "heart.png" ;
+const heartWidth = heartImg.width;
+const heartHeight = heartImg.height;
+const zoomedHeartWidth = canvas.width * 0.08;
+const zoomedHeartHeight = (heartHeight * zoomedHeartWidth) / heartWidth;
+    
+    
 
     // Set background image
     let backgroundImage = new Image();
@@ -18,6 +39,9 @@
     let height = 50; // Adjust based on your image size
     let blocks = [];
     let ropes = [];
+ let cloudTab = [];
+
+
     blocks[0] = {
         x: 300,
         y: 300,
@@ -51,12 +75,40 @@
             y: 0,
             length: canvas.height - blocks[current].y  // Adjust the length of the rope
         };
+
+//new
+        cloudTab[current] = {
+            x : -100 ,
+            y: 0,
+            width: blocks[current - 1].width
+        };
+
     }
 
     function gameOver() {
         mode = 'gameOver';
-        context.fillText('Game over!', 50, 50);
+        // context.font = 'fantasy';
+        // context.fillStyle = 'red'; 
+         context.fillText('Game over!', 0, 0);
+         audio.pause();
+         eltRestart.style.display = 'block';
+     
     }
+
+     //new 
+
+    function showHeart(){
+        for (let i = 1; i <= failedCount; i += 1) {
+            context.drawImage(
+                heartImg,
+                (canvas.width * 0.50) + ((i + 2*(3-i)) * zoomedHeartWidth),
+                0,zoomedHeartWidth+10,zoomedHeartHeight);
+          }
+    }
+
+
+   
+
 
     function backgroundLinearGradient() {
         const grad = context.createLinearGradient(0, 0, 0, canvas.height);
@@ -89,6 +141,13 @@
             context.font = 'fantasy';
             context.fillStyle = 'white'; // Set text color to white for visibility
             context.fillText('Score: ' + (current - 1).toString(), 100, 200);
+
+
+
+
+//new 
+showHeart();
+
 
             // Movement and collision logic
             if (mode == 'bounce') {
@@ -155,6 +214,15 @@
                 context.fillRect(rope.x, rope.y, 2, rope.length);
             });
 
+
+//new 
+
+            cloudTab.forEach(cloud => {
+                context.drawImage(cloudImage,cloud.x,0,canvas.width* 0.2, canvas.height* 0.3);
+               });
+       
+
+
             // Drawing the blocks with the image
             for (let n = 0; n < blocks.length; n++) {
                 let block = blocks[n];
@@ -171,15 +239,19 @@
     }
 
     function restart() {
-        blocks.splice(1, blocks.length - 1);
-        mode = 'bounce';
-        cameraY = 0;
-        scrollCounter = 0;
-        xSpeed = 2;
-        current = 1;
-        newBlocks();
-
-        scrap.y = 0;
+        failedCount = maxFailed;
+    blocks.splice(1, blocks.length - 1);
+    ropes.splice(1, ropes.length - 1);
+    cloudTab.splice(1, cloudTab.length - 1);
+    mode = 'bounce';
+    cameraY = 0;
+    scrollCounter = 0;
+    xSpeed = 2;
+    current = 1;
+    newBlocks();
+    scrap.y = 0;
+    audio.volume = 0.2;
+    showHeart();
     }
 
     canvas.onpointerdown = function () {
