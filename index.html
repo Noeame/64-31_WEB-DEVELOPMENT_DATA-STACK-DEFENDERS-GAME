@@ -126,10 +126,16 @@
 <div style="margin-top:450px;margin-left:740px ; position:absolute;">
     <audio src="raining-village.mp3" style="display: none;" id="audio" autoplay loop></audio>
     <button type="button" onclick="aud_play_pause()">
-      <img id="audioMute" src="audioOn.png" width="35" height="35" alt="sound" style="display: none;" /> 
-      <img id="audioActive" src="audioOff.png" width="35" height="35" alt="sound" /> 
+      <img class="audio-icon" id="audioMute" src="audioOn.png" width="35" height="35" alt="sound" style="display: none;" /> 
+      <img class="audio-icon" id="audioActive" src="audioOff.png" width="35" height="35" alt="sound" /> 
     </button>
  </div>
+
+ <style>.audio-icon {
+    width: 5vh;
+    height: 5vh; 
+}</style>
+ 
  
  <!-- Div to show game over image and replay image -->
  <div id="divRestart" style="margin:.1rem;position:absolute; display: none;">
