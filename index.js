@@ -2,7 +2,7 @@
 import { touchEventHandler } from './utils'
 //import { background } from './background'
 import { lineAction, linePainter } from './line'
-//import { cloudAction, cloudPainter } from './cloud'
+import { cloudAction, cloudPainter } from './cloud'
 import { hookAction, hookPainter } from './hook'
 import * as constant from './constant'
 import { startAnimate, endAnimate } from './animateFct'

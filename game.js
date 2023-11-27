@@ -1,6 +1,29 @@
+
+const clouds = ['c1.png', 'c2.png', 'c3.png'];
+const randomImg = array => (array[Math.floor(Math.random() * array.length)]);
+imgName = randomImg(clouds);
+let cloudImage = new Image();
+cloudImage.src = imgName;
+const maxFailed = 3
+let failedCount = maxFailed;
+
+
+
 let canvas = document.getElementById("myCanvas");
+const audio = document.getElementById("audio");
+const eltRestart = document.getElementById("divRestart");
 let context = canvas.getContext("2d");
 context.font = 'bold 30px sans-serif';
+
+let heartImg = new Image();
+heartImg.src = "heart.png" ;
+const heartWidth = heartImg.width;
+const heartHeight = heartImg.height;
+const zoomedHeartWidth = canvas.width * 0.08;
+const zoomedHeartHeight = (heartHeight * zoomedHeartWidth) / heartWidth;
+
+
+
 
 // Set background image
 let backgroundImage = new Image();
@@ -18,6 +41,9 @@ let ySpeed = 5;
 let height = 50; // Adjust based on your image size
 let blocks = [];
 let ropes = [];
+let cloudTab = [];
+
+
 blocks[0] = {
     x: 300,
     y: 300,
@@ -51,11 +77,33 @@ function newBlocks() {
         y: 0,
         length: blocks[current].y - blocks[current - 1].y  // Adjust the length of the rope
     };
+
+    cloudTab[current] = {
+        x : -100 ,
+        y: 0,
+        width: blocks[current - 1].width
+    };
+
 }
 
 function gameOver() {
     mode = 'gameOver';
-    context.fillText('Game over!', 50, 50);
+   // context.font = 'fantasy';
+   // context.fillStyle = 'red'; 
+    context.fillText('Game over!', 0, 0);
+    audio.pause();
+    eltRestart.style.display = 'block';
+
+}
+
+// Show 3 hearts in top right of the screen
+function showHeart(){
+    for (let i = 1; i <= failedCount; i += 1) {
+        context.drawImage(
+            heartImg,
+            (canvas.width * 0.50) + ((i + 2*(3-i)) * zoomedHeartWidth),
+            0,zoomedHeartWidth+10,zoomedHeartHeight);
+      }
 }
 
 function animate() {
@@ -65,12 +113,15 @@ function animate() {
     if (mode != 'gameOver') {
         context.font = 'fantasy';
         context.fillStyle = 'white'; // Set text color to white for visibility
-        context.fillText('Score: ' + (current - 1).toString(), 100, 200);
+        context.fillText('Score: ' + (current - 1).toString(), 10, 40);
+
+        showHeart();
 
         // Movement and collision logic
         if (mode == 'bounce') {
             blocks[current].x += xSpeed;
             ropes[current].x += xSpeed; // Move the rope along with the block
+            cloudTab[current].x += xSpeed*0.4;
             if (xSpeed > 0 && blocks[current].x + blocks[current].width > canvas.width)
                 xSpeed = -xSpeed;
             if (xSpeed < 0 && blocks[current].x < 0)
@@ -84,7 +135,11 @@ function animate() {
                 mode = 'bounce';
                 let difference = blocks[current].x - blocks[current - 1].x;
                 if (Math.abs(difference) >= blocks[current].width) {
-                    gameOver();
+                    failedCount--;
+                    
+                    if(failedCount == 0){
+                        gameOver();
+                    }
                 }
                 scrap = {
                     y: blocks[current].y,
@@ -118,25 +173,35 @@ function animate() {
         ropes.forEach(rope => {
             context.fillRect(rope.x, rope.y, 2, rope.length);
         });
+       
+        cloudTab.forEach(cloud => {
+         context.drawImage(cloudImage,cloud.x,0,canvas.width* 0.2, canvas.height* 0.3);
+        });
+
 
         // Drawing the blocks with the image
         for (let n = 0; n < blocks.length; n++) {
             let block = blocks[n];
-            context.drawImage(towerImage, block.x, 600 - block.y + cameraY, block.width, height);
+            context.drawImage(towerImage, block.x, 600 - block.y + cameraY, block.width, height);          
         }
+
 
         // Drawing the scrap with the image (if needed)
         if (scrap.width > 0) {
             context.drawImage(towerImage, scrap.x, 600 - scrap.y + cameraY, scrap.width, height);
         }
 
+
+
         window.requestAnimationFrame(animate);
     }
 }
 
 function restart() {
+    failedCount = maxFailed;
     blocks.splice(1, blocks.length - 1);
     ropes.splice(1, ropes.length - 1);
+    cloudTab.splice(1, cloudTab.length - 1);
     mode = 'bounce';
     cameraY = 0;
     scrollCounter = 0;
@@ -144,6 +209,8 @@ function restart() {
     current = 1;
     newBlocks();
     scrap.y = 0;
+    audio.volume = 0.2;
+    showHeart();
 }
 
 canvas.onpointerdown = function () {
