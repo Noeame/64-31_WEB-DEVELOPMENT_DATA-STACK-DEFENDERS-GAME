@@ -8,17 +8,17 @@ const maxFailed = 3
 let failedCount = maxFailed;
 
     
-    let canvas = document.getElementById("myCanvas");
+let canvas = document.getElementById("myCanvas");
 const audio = document.getElementById("audio");
 const eltRestart = document.getElementById("divRestart");
-    let context = canvas.getContext("2d");
-    context.font = 'bold 30px sans-serif';
+let context = canvas.getContext("2d");
+context.font = 'bold 30px sans-serif';
 
 let heartImg = new Image();
 heartImg.src = "heart.png" ;
 const heartWidth = heartImg.width;
-const heartHeight = heartImg.height;
-const zoomedHeartWidth = canvas.width * 0.08;
+const heartHeight = heartImg.height*0.8;
+const zoomedHeartWidth = canvas.width * 0.06;
 const zoomedHeartHeight = (heartHeight * zoomedHeartWidth) / heartWidth;
     
     
@@ -39,7 +39,7 @@ const zoomedHeartHeight = (heartHeight * zoomedHeartWidth) / heartWidth;
     let height = 50; // Adjust based on your image size
     let blocks = [];
     let ropes = [];
- let cloudTab = [];
+    let cloudTab = [];
 
 
     blocks[0] = {
@@ -101,8 +101,8 @@ const zoomedHeartHeight = (heartHeight * zoomedHeartWidth) / heartWidth;
         for (let i = 1; i <= failedCount; i += 1) {
             context.drawImage(
                 heartImg,
-                (canvas.width * 0.50) + ((i + 2*(3-i)) * zoomedHeartWidth),
-                0,zoomedHeartWidth+10,zoomedHeartHeight);
+                (canvas.width * 0.57) + ((i + 2.3*(3-i)) * zoomedHeartWidth),
+                5,zoomedHeartWidth+10,zoomedHeartHeight);
           }
     }
 
@@ -140,20 +140,20 @@ const zoomedHeartHeight = (heartHeight * zoomedHeartWidth) / heartWidth;
         if (mode != 'gameOver') {
             context.font = 'fantasy';
             context.fillStyle = 'white'; // Set text color to white for visibility
-            context.fillText('Score: ' + (current - 1).toString(), 100, 200);
+            context.fillText('Score: ' + (current - 1).toString(), 10, 40);
 
 
 
 
 //new 
-showHeart();
+        showHeart();
 
 
             // Movement and collision logic
             if (mode == 'bounce') {
                 blocks[current].x += xSpeed;
                 ropes[current].x += xSpeed;
-
+                cloudTab[current].x += xSpeed*0.4;
                 if (xSpeed > 0 && blocks[current].x + blocks[current].width > canvas.width) {
                     xSpeed = -xSpeed;
                 }
@@ -172,7 +172,11 @@ showHeart();
                     let difference = blocks[current].x - blocks[current - 1].x;
 
                     if (Math.abs(difference) >= blocks[current].width) {
-                        gameOver();
+                        failedCount--;
+                    
+                        if(failedCount == 0){
+                            gameOver();
+                        }
                     }
 
                     scrap = {
@@ -240,18 +244,18 @@ showHeart();
 
     function restart() {
         failedCount = maxFailed;
-    blocks.splice(1, blocks.length - 1);
-    ropes.splice(1, ropes.length - 1);
-    cloudTab.splice(1, cloudTab.length - 1);
-    mode = 'bounce';
-    cameraY = 0;
-    scrollCounter = 0;
-    xSpeed = 2;
-    current = 1;
-    newBlocks();
-    scrap.y = 0;
-    audio.volume = 0.2;
-    showHeart();
+        blocks.splice(1, blocks.length - 1);
+        ropes.splice(1, ropes.length - 1);
+        cloudTab.splice(1, cloudTab.length - 1);
+        mode = 'bounce';
+        cameraY = 0;
+        scrollCounter = 0;
+        xSpeed = 2;
+        current = 1;
+        newBlocks();
+        scrap.y = 0;
+        audio.volume = 0.2;
+        showHeart();
     }
 
     canvas.onpointerdown = function () {
