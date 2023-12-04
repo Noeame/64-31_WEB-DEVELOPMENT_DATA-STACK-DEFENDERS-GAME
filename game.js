@@ -1,34 +1,26 @@
-    const clouds = ['c1.png', 'c2.png', 'c3.png'];
+    
+const clouds = ['c1.png', 'c2.png', 'c3.png'];
+const randomImg = array => (array[Math.floor(Math.random() * array.length)]);
+imgName = randomImg(clouds);
+let cloudImage = new Image();
+cloudImage.src = imgName;
+const maxFailed = 3
+let failedCount = maxFailed;
 
-    //new
-    let cloudImages = clouds.map(cloud => {
-        let img = new Image();
-        img.src = cloud;
-        return img;
-    });
-
-
-    const randomImg = array => (array[Math.floor(Math.random() * array.length)]);
-    imgName = randomImg(clouds);
-    let cloudImage = new Image();
-    cloudImage.src = imgName;
-    const maxFailed = 3
-    let failedCount = maxFailed;
-
-            
+    
     let canvas = document.getElementById("myCanvas");
-    const audio = document.getElementById("audio");
-    const eltRestart = document.getElementById("divRestart");
+const audio = document.getElementById("audio");
+const eltRestart = document.getElementById("divRestart");
     let context = canvas.getContext("2d");
     context.font = 'bold 30px sans-serif';
 
-    let heartImg = new Image();
-    heartImg.src = "heart.png" ;
-    const heartWidth = heartImg.width;
-    const heartHeight = heartImg.height;
-    const zoomedHeartWidth = canvas.width * 0.08;
-    const zoomedHeartHeight = (heartHeight * zoomedHeartWidth) / heartWidth;
-        
+let heartImg = new Image();
+heartImg.src = "heart.png" ;
+const heartWidth = heartImg.width;
+const heartHeight = heartImg.height;
+const zoomedHeartWidth = canvas.width * 0.08;
+const zoomedHeartHeight = (heartHeight * zoomedHeartWidth) / heartWidth;
+    
     
 
     // Set background image
@@ -85,16 +77,11 @@
         };
 
 //new
-       
-    //new
-    cloudTab[current] = {
-        x: -100,
-        y: 0,
-        image: new Image(),
-        width: blocks[current - 1].width
-    };
-
-    cloudTab[current].image.src = clouds[Math.floor(Math.random() * clouds.length)];
+        cloudTab[current] = {
+            x : -100 ,
+            y: 0,
+            width: blocks[current - 1].width
+        };
 
     }
 
@@ -114,7 +101,7 @@
         for (let i = 1; i <= failedCount; i += 1) {
             context.drawImage(
                 heartImg,
-                (canvas.width * 1.5) + ((i + 2*(3-i)) * zoomedHeartWidth),
+                (canvas.width * 0.50) + ((i + 2*(3-i)) * zoomedHeartWidth),
                 0,zoomedHeartWidth+10,zoomedHeartHeight);
           }
     }
@@ -222,7 +209,7 @@ showHeart();
             }
 
             // Drawing the ropes from the ceiling to the blocks
-            context.fillStyle = 'white';
+            context.fillStyle = '#FFFF';
             ropes.forEach(rope => {
                 context.fillRect(rope.x, rope.y, 2, rope.length);
             });
@@ -231,7 +218,7 @@ showHeart();
 //new 
 
             cloudTab.forEach(cloud => {
-                context.drawImage(cloud.image,cloud.x,0,canvas.width* 0.2, canvas.height* 0.3);
+                context.drawImage(cloudImage,cloud.x,0,canvas.width* 0.2, canvas.height* 0.3);
                });
        
 

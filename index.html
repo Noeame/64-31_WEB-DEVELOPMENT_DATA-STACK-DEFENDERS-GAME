@@ -83,13 +83,13 @@
             <h2>Login</h2>
             <div class="input-box">
                 <span class="icon"></span>
-                <input type="email" required>
-                <label>Email</label>
+               <input type="email" required> 
+                <label>Email</label> 
             </div>
             <div class="input-box">
                 <span class="icon"></span>
                 <input type="password" required>
-                <label>Password</label>
+                <label>Password</label> 
             </div>
             <div class="remember-forgot">
                 <label>
@@ -97,7 +97,7 @@
                 </label>
                 <a href="#">Forgot Password?</a>
             </div>
-            <button type="submit">Login</button>
+            <button type="submit" class="submitButton">Login</button>
             <div class="register-link">
                 <p>Don't have an account?
                     <a href="#">Register</a></p>
@@ -123,11 +123,12 @@
 
 
 <!-- Div to show audio -->
-<div style="margin-top:450px;margin-left:740px ; position:absolute;">
+<div style="display: none;" id="audioDiv" class="cAudioDiv">
     <audio src="raining-village.mp3" style="display: none;" id="audio" autoplay loop></audio>
-    <button type="button" onclick="aud_play_pause()">
-      <img class="audio-icon" id="audioMute" src="audioOn.png" width="35" height="35" alt="sound" style="display: none;" /> 
-      <img class="audio-icon" id="audioActive" src="audioOff.png" width="35" height="35" alt="sound" /> 
+
+    <button type="button" onclick="aud_play_pause()" class="audioButton">
+      <img id="audioMute" src="audioOn.png" width="35" height="35" alt="sound" style="display: none;" /> 
+      <img id="audioActive" src="audioOff.png" width="35" height="35" alt="sound" /> 
     </button>
  </div>
 
@@ -153,6 +154,9 @@
         function showGame() {
           // Simply hide the login box and show the game container
           document.querySelector('.login-box').style.display = 'none';
+          document.getElementById('game-container').classList.remove('hidden');
+          aud_play_pause();
+
 
             // Hide the restart div
               document.getElementById('divRestart').style.display = 'none';
@@ -178,31 +182,61 @@
 
     function aud_play_pause() {
       var myAudio = document.getElementById("audio");
+     
       var btn1 = document.getElementById("audioMute");
-      var btn2 = document.getElementById("audioActive");
+      var btn2 = document.getElementById("audioActive");      
       if (myAudio.paused) {
-         myAudio.play();        
+         playAudio();
       } else {
-         myAudio.pause();    
+        pauseAudio();
       }
       showAudioButton();
+    }
+
+    function pauseAudio(){
+        var myAudio = document.getElementById("audio");
+        myAudio.pause();
+    }
+
+    function playAudio(){
+        var myAudio = document.getElementById("audio");
+        myAudio.play();
     }
 
     function showAudioButton(){
         var myAudio = document.getElementById("audio");
         var btn1 = document.getElementById("audioMute");
         var btn2 = document.getElementById("audioActive");
+        var eltAudioDiv = document.getElementById("audioDiv");
+        eltAudioDiv.style.display = 'block';
         if (myAudio.paused) {
          btn2.style.display = 'block';
          btn1.style.display = 'none';
-      } else {
+        } else {
          btn2.style.display = 'none';
          btn1.style.display = 'block';
-      }
+        }
     }
 
  
     //once the loading of the ressoures is done, the audio button is shown
+    // Restart game on reloading the page
+    function reloadGame(){
+         showGame();
+         const eltRestart = document.getElementById("divRestart");
+         eltRestart.style.display = 'none';
+         pauseAudio();
+         showAudioButton();
+
+    }
+
+
+
+
+    
+
+
+
 
         window.addEventListener('load', function () {
             domReady = true;
