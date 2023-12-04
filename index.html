@@ -6,8 +6,8 @@
 
         <meta charset="UTF-8">
         
-        <link rel="stylesheet" href="style.css"> <!-- Add this line -->
-        <!-- Other existing styles -->
+        <link rel="stylesheet" href="style.css"> <!-- normal html outlet -->
+        
   
    
     <title>Login Form Animation CSS</title>
@@ -46,8 +46,8 @@
         }
 
         #canvas {
-            background-color: greenyellow;
-            border: 1px solid greenyellow;
+            background-color: white;
+            border: 1px solid white;
             flex: 2;
             margin: auto;
             max-height: 100%;
@@ -63,7 +63,7 @@
 
         /* Add your existing styles for the login form here */
         .login-box {
-            /* Your styling for the login box */
+            /*  styling for the login box is made separately*/
         }
     </style>
 </head>
@@ -119,7 +119,7 @@
     </div>
 
 
-<!-- new divs for audo and so -->
+<!--  divs for audio and so on -->
 
 
 <!-- Div to show audio -->
@@ -140,18 +140,12 @@
  <!-- Div to show game over image and replay image -->
  <div id="divRestart" style="margin:.1rem;position:absolute; display: none;">
      <img id="gameOver" src="gameOver.png" style="display: block;" /> 
-     <img id="restart" src="restartButton.png" style="display: block;" onclick="reloadGame()"/> 
+     <img id="restart" src="restartButton.png" style="display: block;" onclick="showGame()"/> 
  </div>
 
 
 
-
-
-
-
-
-
-
+   <!--is needed--> 
     <script src="animateFct.js"></script>
     <script src="game.js"></script>
 
@@ -159,9 +153,14 @@
         function showGame() {
           // Simply hide the login box and show the game container
           document.querySelector('.login-box').style.display = 'none';
-        document.getElementById('game-container').classList.remove('hidden');
 
-        // Start the game
+            // Hide the restart div
+              document.getElementById('divRestart').style.display = 'none';
+
+            //unhide the game container 
+            document.getElementById('game-container').classList.remove('hidden');
+
+        // Start the game, functions are handled in game.js 
         restart();
         animate();
         }
@@ -173,55 +172,9 @@
             gameWidth = Math.ceil(gameHeight / ratio);
         }
 
-        // Additional setup code here- new
 
 
-
-
-
-        // Loading Animation Functions
-    function hideLoading() {
-        if (domReady && canvasReady) {
-            $('#canvas').show();
-            loadFinish = true;
-            setTimeout(function () {
-                $('.loading').hide();
-                $('.landing').show();
-            }, 1000);
-        }
-    }
-
-    function updateLoading(status) {
-        var success = status.success;
-        var total = status.total;
-        var failed = status.failed;
-        if (failed > 0 && !loadError) {
-            loadError = true;
-            alert('Network error... Please try again.');
-            return;
-        }
-        var percent = parseInt((success / total) * 100);
-        if (percent === 100 && !canvasReady) {
-            canvasReady = true;
-            hideLoading();
-        }
-        percent = percent > 98 ? 98 : percent;
-        percent = percent + '%';
-        $('.loading .title').text(percent);
-        $('.loading .percent').css({
-            'width': percent
-        });
-    }
-
-    // Index Hide Function
-    function indexHide() {
-        $('.landing .action-1').addClass('slideTop');
-        $('.landing .action-2').addClass('slideBottom');
-        setTimeout(function () {
-            $('.landing').hide();
-        }, 950);
-    }
-
+ 
 
     function aud_play_pause() {
       var myAudio = document.getElementById("audio");
@@ -248,23 +201,12 @@
       }
     }
 
-    // Restart game on reloading the page
-    function reloadGame(){
-         window.location.reload();
-         var eltRestart = document.getElementById("divRestart");
-    }
-
-
-
-
-    
-
-
-
+ 
+    //once the loading of the ressoures is done, the audio button is shown
 
         window.addEventListener('load', function () {
             domReady = true;
-        hideLoading();
+       
         showAudioButton();
     }, false);
 

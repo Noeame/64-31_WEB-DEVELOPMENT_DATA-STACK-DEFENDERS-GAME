@@ -8,9 +8,6 @@
     });
 
 
-
-
-
     const randomImg = array => (array[Math.floor(Math.random() * array.length)]);
     imgName = randomImg(clouds);
     let cloudImage = new Image();
@@ -25,13 +22,13 @@
     let context = canvas.getContext("2d");
     context.font = 'bold 30px sans-serif';
 
-let heartImg = new Image();
-heartImg.src = "heart.png" ;
-const heartWidth = heartImg.width;
-const heartHeight = heartImg.height;
-const zoomedHeartWidth = canvas.width * 0.08;
-const zoomedHeartHeight = (heartHeight * zoomedHeartWidth) / heartWidth;
-    
+    let heartImg = new Image();
+    heartImg.src = "heart.png" ;
+    const heartWidth = heartImg.width;
+    const heartHeight = heartImg.height;
+    const zoomedHeartWidth = canvas.width * 0.08;
+    const zoomedHeartHeight = (heartHeight * zoomedHeartWidth) / heartWidth;
+        
     
 
     // Set background image
