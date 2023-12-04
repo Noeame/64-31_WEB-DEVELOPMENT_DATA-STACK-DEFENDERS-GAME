@@ -242,7 +242,7 @@ showHeart();
             // Drawing the blocks with the image
             for (let n = 0; n < blocks.length; n++) {
                 let block = blocks[n];
-                context.drawImage(towerImage, block.x, 600 - block.y + cameraY, block.width, height* 1.25);
+                context.drawImage(towerImage, block.x, 600 - block.y + cameraY, block.width, height* 1.30);
             }
 
             // Drawing the scrap with the image (if needed)
