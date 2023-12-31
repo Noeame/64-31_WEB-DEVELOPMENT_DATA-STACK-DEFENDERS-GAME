@@ -9,7 +9,7 @@ const Others = () => {
 
     const fetchWordPressData = async () => {
         try {
-            const response = await axios.get('https://localhost/wordpress/wp-json/wp/v2/pages');
+            const response = await axios.get(`${process.env.REACT_APP_API_ROOT}/pages`);
 
             const data = setPosts(response.data);
             console.log(response.data);
@@ -27,6 +27,7 @@ const Others = () => {
         <div>
             <BackgroundImage />
             <Navigation />
+
             <div>{
                 Object.keys(posts).length ?
                     posts.map((post) => {

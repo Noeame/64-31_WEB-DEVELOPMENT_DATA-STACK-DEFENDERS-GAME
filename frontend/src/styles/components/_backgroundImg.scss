@@ -1,14 +1,14 @@
 .backgroundImg {
   @include verticalCenter;
 
-  background: url(../../assets/images/montainImg.jpg);
+  background: url(../../assets/images/game-bonus/landing-bg.png);
   position: relative;
   /*background-image problem*/
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   margin: 0;
-  color: white;
+  color: black;
   /* font color*/
   font-size: 18vh;
   font-family: Montserrat;

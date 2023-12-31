@@ -4,8 +4,10 @@ import Navigation from '../components/Navigation';
 import BackgroundImage from '../components/BackgroundImage';
 import DragDrop from '../components/DragDrop';
 import { useFormik } from 'formik';
+import Dropzone from '../components/Dropzone';
 
 import { FileUploader } from "react-drag-drop-files";
+import DragNDrop from '../components/DragNDrop';
 
 const fileTypes = ["JPEG", "JPG", "PNG", "GIF"];
 
@@ -15,7 +17,6 @@ const Result = () => {
     const handleChange = (file) => {
         setFile(file);
     };
-
 
 
 
@@ -29,7 +30,7 @@ const Result = () => {
 
     const fetchWordPressData = async () => {
         try {
-            const response = await axios.get('https://localhost/wordpress/wp-json/wp/v2/posts');
+            const response = await axios.get(`${process.env.REACT_APP_API_ROOT}/posts`);
 
             const data = setPosts(response.data);
             console.log(response.data);
@@ -47,7 +48,7 @@ const Result = () => {
         <div>
             <BackgroundImage />
             <Navigation />
-            <DragDrop />
+            <DragNDrop />
             <div>{
                 Object.keys(posts).length ?
                     posts.map((post) => {
@@ -59,6 +60,7 @@ const Result = () => {
                     ) : 'Loading ....'
 
             }</div>
+            <DragDrop />
         </div>
     );
 };
