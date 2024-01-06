@@ -1,13 +1,28 @@
+h1 {
+    font-size: 3vh;
+    border-bottom: 2px solid rgb(189, 189, 189);
+    text-align: left;
+    padding-left: 25px;
+    padding-bottom: 5px;
+}
+
 .dragndrop {
-    text-align: center;
+    padding-left: 5rem;
+
+}
+
+.textDiv {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .dragndrop-header {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     font-size: calc(10px + 1.5vmin);
+    flex-wrap: wrap;
 }
 
 .dragndrop-link {
@@ -25,15 +40,19 @@
 }
 
 .characters {
-    list-style: none;
-    padding-left: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 3px;
+    max-width: 90%;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .characters li {
     display: flex;
     align-items: center;
-    border: solid 2px #d0d0d0;
-    border-radius: .2em;
+
+
     padding: .5em .8em .5em .5em;
     margin-bottom: 1em;
 }
@@ -42,14 +61,4 @@
     max-width: none;
     font-weight: bold;
     margin: 0;
-}
-
-.characters-thumb {
-    overflow: hidden;
-    flex-shrink: 0;
-    width: 4em;
-    height: 4em;
-    background-color: #e8e8e8;
-    padding: .5em;
-    margin-right: .5em;
 }

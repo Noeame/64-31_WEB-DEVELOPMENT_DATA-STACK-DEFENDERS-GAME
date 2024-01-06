@@ -49,6 +49,26 @@ const webDevelopperCharacters = [
         id: 'home',
         name: 'Home',
         thumb: '/images/game-bonus/home.png'
+    },
+    {
+        id: 'arcticbg',
+        name: 'arcticbg',
+        thumb: '/images/game-bonus/arcticbg.png'
+    },
+    {
+        id: 'desert',
+        name: 'desert',
+        thumb: '/images/game-bonus/desert.png'
+    },
+    {
+        id: 'forestbg',
+        name: 'forestbg',
+        thumb: '/images/game-bonus/forestbg.png'
+    },
+    {
+        id: 'jeuImage',
+        name: 'jeuImage',
+        thumb: '/images/game-bonus/jeuImage.png'
     }
 ]
 
@@ -69,8 +89,15 @@ const DragNDrop = () => {
 
         <div className="App">
             <header className="dragndrop-header">
-                <h1>Result main screenshots</h1>
+                <h1>The Initial Designs of Eco Guard Hero</h1>
                 <br />
+                <div className='textDiv'>
+                    Welcome to the early stages of "Eco Guard Hero" In this space, we share the evolving concepts and visual ideas that shape our game.
+
+                    Before a game fully materializes, it begins as imagination taking form. Here, you'll see the transformation from initial sketches and early designs. These visuals represent the core of what "Eco Guard Hero" aims to become a captivating and immersive gaming experience.
+
+                    Join us in glimpsing into our creative process, understanding our inspirations, and sharing in the excitement for what lies ahead. As these designs evolve into the final game, we invite you to celebrate each milestone with us.
+                </div>
                 <DragDropContext onDragEnd={handleOnDragEnd}>
                     <Droppable droppableId="characters">
                         {(provided) => (
@@ -81,7 +108,7 @@ const DragNDrop = () => {
                                             {(provided) => (
                                                 <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                                                     <div className="characters-thumb">
-                                                        <img src={thumb} alt={`${name} Thumb`} width="70" height="70" />
+                                                        <img src={thumb} alt={`${name} Thumb`} width="200" height="200" />
                                                     </div>
                                                     <p>
                                                         {name}
