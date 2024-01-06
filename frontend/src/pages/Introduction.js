@@ -3,7 +3,7 @@ import axios from 'axios';
 import BackgroundImage from '../components/BackgroundImage';
 import Navigation from '../components/Navigation';
 
-
+// declaration de classe
 const Introduction = () => {
     const [posts, setPosts] = useState([]);
 
@@ -24,9 +24,10 @@ const Introduction = () => {
         fetchWordPressData();
     }, []);
 
+    // On parcourt tous les id de pages et pour l'id ayant pour titre "Introduction", on récupère son code html brute qu'on insère dans la balise <div>
 
     return (
-        <div id='description'>
+        <div id='introduction'>
             <BackgroundImage />
             <Navigation />
             <div>{

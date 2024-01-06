@@ -9,6 +9,8 @@ const Description = () => {
 
     const fetchWordPressData = async () => {
         try {
+            // Récupèration du json de toutes les pages provenant de wordpress. Le json contient toutes les pages créée sur wordpress.
+            // Dans le json, nous avons le contenu html brute de chaque page
             const response = await axios.get(`${process.env.REACT_APP_API_ROOT}/pages`);
 
             const data = setPosts(response.data);
@@ -24,6 +26,7 @@ const Description = () => {
         fetchWordPressData();
     }, []);
 
+    // On parcourt tous les id de pages et pour l'id ayant pour titre "Game details", on récupère son code html brute qu'on insère dans la balise <div>
 
     return (
         <div>

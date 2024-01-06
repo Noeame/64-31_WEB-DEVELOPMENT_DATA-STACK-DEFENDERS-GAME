@@ -4,11 +4,10 @@ import Description from "./pages/Description";
 import Introduction from "./pages/Introduction";
 import Links from "./pages/Links";
 import Logbook from "./pages/Logbook";
-import Others from "./pages/Others";
 import Result from "./pages/Result";
 
-
-
+// Définition des routes des pages. Ce qui veut dire que chaque page est liée à un path. Exemple lorsque le path = /logbook c'est la page Logbook.js est appelée
+// la route "/*" veut simplement dire que pour tout chemin différent des chémins définit dans la balise <Routes>, c'est la page Introduction.js qui est appelée
 const App = () => {
   return (
     <BrowserRouter>
@@ -17,7 +16,6 @@ const App = () => {
         <Route path="/description" element={<Description />} />
         <Route path="/links" element={<Links />} />
         <Route path="/logbook" element={<Logbook />} />
-        <Route path="/Others" element={<Others />} />
         <Route path="/result" element={<Result />} />
         <Route path="/*" element={<Introduction />} />
       </Routes>
