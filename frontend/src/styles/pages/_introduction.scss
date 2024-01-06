@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:200,400,400i,700|Roboto+Slab:700');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:200,400,wght@1,1000&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+h2 {
+    font-size: 3vh;
+
+    /* bottom border of the "title" of the page*/
+}
+
+h3 {
+    left: 5px;
+    padding-top: 40px;
+    text-align: left;
+    margin-left: 5px;
+    padding-left: 15px;
+}
+
+h2 {
+    padding-top: 40px;
+
+}
+
+p {
+    background-color: #eee;
+    clip: auto !important;
+    clip-path: none;
+    color: #444;
+    display: block;
+    font-size: 1em;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+}

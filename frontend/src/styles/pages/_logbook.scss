@@ -16,3 +16,21 @@ td {
 th {
     background-color: #f2f2f2;
 }
+
+h2 {
+    text-align: left;
+
+}
+
+h5 {
+    padding-left: 2rem;
+}
+
+.wp-block-image {
+    width: calc(33.33% - 20px);
+    padding: 0 15px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+}
