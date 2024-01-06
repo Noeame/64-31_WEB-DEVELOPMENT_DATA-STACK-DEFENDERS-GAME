@@ -1,0 +1,78 @@
+/* General Styles */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+#game-container {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+header,
+footer {
+    padding: 10px;
+    background-color: #f2f2f2;
+}
+
+/* Score Display */
+#score,
+#high-score {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+/* Game Area */
+#game-area {
+    height: 400px;
+    background-color: #ddd;
+    position: relative;
+    /* Allows absolute positioning inside this element */
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Block Styles */
+.block {
+    width: 50px;
+    /* Default Width */
+    height: 20px;
+    /* Default Height */
+    background-color: blue;
+    /* Default Color */
+    position: absolute;
+    bottom: 0;
+    /* Start at the bottom of the game area */
+    left: 50%;
+    /* Center the block */
+    transform: translateX(-50%);
+    /* Adjust for center alignment */
+    transition: all 0.3s ease;
+    /* Smooth transition for movements */
+}
+
+/* You can add more styles or animations as needed */
+
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1em;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Add any additional styles you might need */
