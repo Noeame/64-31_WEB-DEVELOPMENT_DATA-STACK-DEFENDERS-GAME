@@ -1,3 +1,10 @@
+/*
+   This CSS file styles animated clouds for the "Bridge the Gap" game.
+   The clouds are created using pseudo-elements and have different sizes
+   and positions. They move horizontally across the screen in a continuous loop,
+   creating a dynamic background effect.
+*/
+
 .clouds {
     position: fixed;
     top: 0;

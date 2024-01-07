@@ -1,3 +1,8 @@
+/*
+   This CSS file styles a landing page with a background image and a responsive banner, the layout for smaller screens.
+   The banner includes a central image with overlaid text and icons.
+*/
+
 body {
     background-image: url('images/landing-bg.png');
     background-size: cover;

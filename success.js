@@ -1,3 +1,10 @@
+/*
+This script handles the logic for updating user progress in a web app based on game levels.
+It interacts with Firebase Realtime Database to store and retrieve user records, including their scores and earned stars
+for completed levels. Additionally, it displays relevant trivia messages for each leve
+ and redirects the user to the level selection page after a certain delay.
+*/
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";

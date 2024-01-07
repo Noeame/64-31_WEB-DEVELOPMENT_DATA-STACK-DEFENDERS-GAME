@@ -1,3 +1,8 @@
+/*
+ Firebase initialization and registration logic for a web app, to store user information.
+ Detects user input on the registration form, checks if the entered name already exists in the Firebase database,
+ and either displays an error message or adds the name to the database.
+ */
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";

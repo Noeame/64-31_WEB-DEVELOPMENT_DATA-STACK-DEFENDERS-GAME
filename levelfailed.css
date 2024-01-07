@@ -1,3 +1,7 @@
+/*
+   This CSS file styles a banner section with a background image, text, and icons, the layout for smaller screens.
+*/
+
 body {
     background-image: url('images/landing-bg.png');
     background-size: cover;

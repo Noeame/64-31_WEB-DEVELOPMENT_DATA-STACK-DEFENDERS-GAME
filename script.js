@@ -1,3 +1,11 @@
+/*
+ This script extends JavaScript functionalities for a game.
+ It includes custom audio handling, a sinus function, game data, and functions for drawing blocks,
+ characters, sticks, and backgrounds. The script controls the game's main loop, animations,
+ and user interactions, creating a dynamic and interactive gaming experience.
+ It integrates with HTML elements and leverages features like Canvas and audio playback.
+ */
+
 // Extend the base functionality of JavaScript
 Array.prototype.last = function () {
   return this[this.length - 1];
@@ -558,7 +566,3 @@ function drawBackground() {
     ctx.restore();
   };
 }
-
-
-
-

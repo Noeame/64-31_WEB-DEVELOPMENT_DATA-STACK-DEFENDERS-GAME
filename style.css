@@ -1,3 +1,9 @@
+/*
+This CSS stylesheet provides styling for a game interface.
+It sets up the body and container to occupy the full height, defines the font family,
+and includes specific styles for elements like the score display, introduction, restart button, and perfect message.
+*/
+
 html,
 body {
     height: 100%;

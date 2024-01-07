@@ -1,3 +1,9 @@
+/*
+    Stylesheet for the login page.
+    Sets background image, font-family, and positioning for the login banner and input elements.
+    Utilizes media queries for responsive design adjustments on smaller screens.
+*/
+
 body {
     background-image: url('images/landing-bg.png');
     background-size: cover;

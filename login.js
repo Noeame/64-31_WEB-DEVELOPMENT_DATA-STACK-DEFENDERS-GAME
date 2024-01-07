@@ -1,3 +1,10 @@
+/*
+   This JavaScript file initializes the Firebase app for the web application, configuring it with the provided credentials.
+   It includes modules for authentication and Firestore database access. The script listens for a keyup event on the "registerName" input field,
+   triggering an asynchronous check for the uniqueness of the entered name. If the name is already in use, an error message is displayed;
+   otherwise, the user is directed to the level selection page.
+*/
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 
 // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
@@ -28,26 +35,6 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const firestore = getFirestore(app);
-
-// Function to register a new user
-// function registerUser() {
-//     const name = document.getElementById("userRegisterEmail").value;
-//     const password = document.getElementById("userRegisterPassword").value;
-
-//     auth.createUserWithEmailAndPassword(name, password)
-//         .then((userCredential) => {
-//             // Registration successful
-//             const user = userCredential.user;
-//             console.log('Registration successful:', user);
-//             createLevelTableIfNeeded(user.uid); // Create level table after successful registration
-//         })
-//         .catch((error) => {
-//             // Handle registration errors
-//             const errorCode = error.code;
-//             const errorMessage = error.message;
-//             console.error('Registration error:', errorCode, errorMessage);
-//         });
-// }
 
 document.getElementById("registerName").addEventListener("keyup", async (e) => {
     const name = document.getElementById("registerName").value;

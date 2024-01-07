@@ -1,3 +1,10 @@
+/*
+   This JavaScript file initializes Firebase with authentication and Firestore services.
+   It sets up the Firebase configuration and retrieves user information, such as the username and stars earned.
+   The code fetches user levels data from Firebase, creates HTML elements for level blocks with corresponding stars,
+   and handles level selection based on user progress.
+   The script includes event listeners for level clicks and adjusts the display of level blocks and stars based on user achievements.
+*/
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 
