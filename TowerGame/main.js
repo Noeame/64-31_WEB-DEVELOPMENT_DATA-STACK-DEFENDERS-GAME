@@ -1,4 +1,8 @@
 
+
+//represents the tower that needs protection, it is drawn with a picture. 
+//with the help of the radius we determine the area for the collision
+//when pressing d the readius is visible 
 class Planet {
     constructor(game){
         this.game=game;
@@ -20,7 +24,7 @@ class Planet {
  }
 
 
-
+//the player also is drawn as a picture and the radius determines the collision area
  class Player{
     constructor(game){
         this.game=game;
@@ -40,18 +44,21 @@ class Planet {
 
         if(this.game.debug){
         context.beginPath();
-        context.arc(0,0, this.y, this.radius, 0, Math.PI * 2);
+        context.arc(0,0, this.radius, 0, Math.PI * 2);
         context.stroke();
         }
         context.restore();
     }
 
 
+    //
     update(){
     //this.x++;
-        this.aim=this.game.calcAim(this.game.mouse, this.game.planet);
-        this.x=this.game.planet.x + this.game.planet.radius * this.aim[0];
-        this.y=this.game.planet.y + this.game.planet.radius * this.aim[1];
+    //this.x=this.game.mouse.x;
+    //this.y=this.game.mouse.y;
+        this.aim=this.game.calcAim( this.game.planet,this.game.mouse);
+     this.x=this.game.planet.x + (this.game.planet.radius + this.radius)* this.aim[0];
+      this.y=this.game.planet.y + (this.game.planet.radius + this.radius) * this.aim[1];
         this.angle=Math.atan2(this.aim[3], this.aim[2]);
     }
 
