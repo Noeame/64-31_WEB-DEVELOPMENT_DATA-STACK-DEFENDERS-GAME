@@ -16,16 +16,16 @@ class Planet {
         context.drawImage(this.image, this.x-100, this.y-100);
 
         if(this.game.debug){
-        context.beginPath();
-        context.arc(this.x,this.y,this.radius,0,Math.PI*2);
-        context.stroke();
+            context.beginPath();
+            context.arc(this.x,this.y,this.radius,0,Math.PI*2);
+            context.stroke();
         }
     }
- }
+}
 
 
 //the player also is drawn as a picture and the radius determines the collision area
- class Player{
+class Player{
     constructor(game){
         this.game=game;
         this.x=this.game.width*0.5;
@@ -43,9 +43,9 @@ class Planet {
         context.drawImage(this.image,-this.radius,-this.radius);
 
         if(this.game.debug){
-        context.beginPath();
-        context.arc(0,0, this.radius, 0, Math.PI * 2);
-        context.stroke();
+            context.beginPath();
+            context.arc(0,0, this.radius, 0, Math.PI * 2);
+            context.stroke();
         }
         context.restore();
     }
@@ -53,12 +53,12 @@ class Planet {
 
     //
     update(){
-    //this.x++;
-    //this.x=this.game.mouse.x;
-    //this.y=this.game.mouse.y;
+        //this.x++;
+        //this.x=this.game.mouse.x;
+        //this.y=this.game.mouse.y;
         this.aim=this.game.calcAim( this.game.planet,this.game.mouse);
-     this.x=this.game.planet.x + (this.game.planet.radius + this.radius)* this.aim[0];
-      this.y=this.game.planet.y + (this.game.planet.radius + this.radius) * this.aim[1];
+        this.x=this.game.planet.x + (this.game.planet.radius + this.radius)* this.aim[0];
+        this.y=this.game.planet.y + (this.game.planet.radius + this.radius) * this.aim[1];
         this.angle=Math.atan2(this.aim[3], this.aim[2]);
     }
 
@@ -66,7 +66,7 @@ class Planet {
         const projectile=this.game.getProjectile();
         if(projectile) projectile.start(this.x+this.radius * this.aim[0],this.y + this.radius * this.aim[1], this.aim[0],this.aim[1]);
     }
- }
+}
 
 
 
@@ -214,48 +214,48 @@ class Enemy{
                 this.y+=this.speedY;
             }
 
-             //check collision enemy/planet
+            //check collision enemy/planet
 
-             if(this.game.checkCollision(this, this.game.planet) && this.lives >=1){
-                 this.lives=0;
-                 this.speedX=0;
-                 this.speedY=0;
-                 this.collided=true;
-                 this.game.lives--;
+            if(this.game.checkCollision(this, this.game.planet) && this.lives >=1){
+                this.lives=0;
+                this.speedX=0;
+                this.speedY=0;
+                this.collided=true;
+                this.game.lives--;
 
 
-             }
+            }
 
-             //check collision enemy/player
+            //check collision enemy/player
 
-             if(this.game.checkCollision(this, this.game.player) && this.lives >= 1 ){
-                 this.lives=0;
-                 this.collided=true;
-                 this.game.lives--;
+            if(this.game.checkCollision(this, this.game.player) && this.lives >= 1 ){
+                this.lives=0;
+                this.collided=true;
+                this.game.lives--;
 
-             }
+            }
 
-             //check collision enemy/projectile
-             this.game.projectilePool.forEach(projectile =>{
-                 if(!projectile.free && this.game.checkCollision(this,projectile)&&this.lives >=1){
-                     projectile.reset();
-                     this.hit(1);
-                 }
-             });
-             //sprite Animation 
+            //check collision enemy/projectile
+            this.game.projectilePool.forEach(projectile =>{
+                if(!projectile.free && this.game.checkCollision(this,projectile)&&this.lives >=1){
+                    projectile.reset();
+                    this.hit(1);
+                }
+            });
+            //sprite Animation
 
-             if(this.lives < 1 && this.game.spriteUpdate) {
+            if(this.lives < 1 && this.game.spriteUpdate) {
                 this.frameX++;
-             }
-             if(this.frameX > this.maxFrame){
+            }
+            if(this.frameX > this.maxFrame){
                 this.reset();
                 //only add scores if collied is false
                 if(!this.collided)
-                this.game.score += this.maxLives;
-             } 
+                    this.game.score += this.maxLives;
+            }
 
 
-         }
+        }
 
     }
 }
@@ -287,7 +287,7 @@ class Lobstermorph extends Enemy{
 
 
 
- class Game{
+class Game{
     constructor(canvas){
         this.canvas=canvas;
         this.width=this.canvas.width;
@@ -331,23 +331,23 @@ class Lobstermorph extends Enemy{
 
         //event listeners
         window.addEventListener('mousemove', e =>{
-          //  console.log(e);
-        if (!this.isPaused) {
-            this.mouse.x=e.offsetX;
-            this.mouse.y=e.offsetY;
-        }
+            //  console.log(e);
+            if (!this.isPaused) {
+                this.mouse.x=e.offsetX;
+                this.mouse.y=e.offsetY;
+            }
 
         });
 
         window.addEventListener('mousedown', e =>{
             //  console.log(e);
             if (!this.isPaused) {
-              this.mouse.x=e.offsetX;
-              this.mouse.y=e.offsetY;
-              this.player.shoot();
+                this.mouse.x=e.offsetX;
+                this.mouse.y=e.offsetY;
+                this.player.shoot();
             }
 
-          });
+        });
 
 
         window.addEventListener('keyup', e => {
@@ -367,7 +367,7 @@ class Lobstermorph extends Enemy{
         this.isPaused = !this.isPaused;
         const pauseOverlay = document.getElementById('pauseOverlayShooter');
         pauseOverlay.style.display = this.isPaused ? 'flex' : 'none';
-     
+
     }
 
     render(context, deltaTime){
@@ -396,7 +396,7 @@ class Lobstermorph extends Enemy{
             enemy.update();
         });
         //periodically activate an enemy
-        
+
         if(!this.gameOver){
 
             if(this.enemyTimer < this.enemyInterval){
@@ -408,10 +408,10 @@ class Lobstermorph extends Enemy{
             }
 
         }
-        
 
-        
-        
+
+
+
         //periodically update sprites
         if(this.spriteTimer < this.spriteInterval){
             this.spriteTimer += deltaTime;
@@ -440,7 +440,7 @@ class Lobstermorph extends Enemy{
 
         for (let i = 0; i < this.lives; i++) {
             context.fillRect(20 + 15 * i, 60, 10, 30 );
-            
+
         }
 
 
@@ -453,18 +453,18 @@ class Lobstermorph extends Enemy{
 
 
             if(this.score >= this.winningScore){
-                message1=''
+                message1='You win!'
                 message2='Your score is '+ this.score+ '!';
-             }
-             else{
-                message1= '';
-                message2 = '';
+            }
+            else{
+                message1= 'You lose!';
+                message2 = 'Try again!';
 
-             }
-             context.font = '100px Impact';
-             context.fillText(message1, this.width * 0.5, 200);
-             context.font = '50px Impact';
-             context.fillText(message2, this.width * 0.5, 550);
+            }
+            context.font = '100px Impact';
+            context.fillText(message1, this.width * 0.5, 200);
+            context.font = '50px Impact';
+            context.fillText(message2, this.width * 0.5, 550);
         }
         context.restore();
 
@@ -499,7 +499,7 @@ class Lobstermorph extends Enemy{
 
     getProjectile(){
         for (let i = 0; i < this.projectilePool.length; i++) {
-           if(this.projectilePool[i].free) return this.projectilePool[i];
+            if(this.projectilePool[i].free) return this.projectilePool[i];
 
         }
     }
@@ -508,14 +508,14 @@ class Lobstermorph extends Enemy{
         for (let i = 0; i < this.numberOfEnemies; i++) {
             let randomNumber = Math.random();
             if(randomNumber > 0.25 ){
-           this.enemyPool.push(new Alien (this));
+                this.enemyPool.push(new Alien (this));
 
             }
-             else{
+            else{
 
                 this.enemyPool.push(new Lobstermorph(this));
 
-             }
+            }
 
         }
     }
@@ -524,10 +524,10 @@ class Lobstermorph extends Enemy{
         for (let i = 0; i < this.enemyPool.length; i++) {
             if(this.enemyPool[i].free) return this.enemyPool[i];
 
-         }
-     }
+        }
+    }
 
- }
+}
 
 
 window.addEventListener('load',function(){
@@ -551,7 +551,7 @@ window.addEventListener('load',function(){
     const game=new Game(canvas);
 
     let lastTime=0;
- 
+
     function animate(timeStamp){
         const deltaTime=timeStamp-lastTime;
         lastTime=timeStamp;
