@@ -453,12 +453,12 @@ class Lobstermorph extends Enemy{
 
 
             if(this.score >= this.winningScore){
-                message1='You win!'
+                message1=''
                 message2='Your score is '+ this.score+ '!';
              }
              else{
-                message1= 'You lose!';
-                message2 = 'Try again!';
+                message1= '';
+                message2 = '';
 
              }
              context.font = '100px Impact';
