@@ -20,7 +20,7 @@
     />
     <link rel="stylesheet" href="leaderboard.css" />
     <!-- <link rel="stylesheet" href="landing.css"> -->
-    <title>Hello, world!</title>
+    <title>Leaderboard!</title>
 </head>
 
 <body>
@@ -89,7 +89,7 @@
                         });
 
                         const sortedScores = Object.entries(scoreMap).sort((a, b) => b[1] - a[1]);
-                        const topScores = sortedScores.slice(0, 5); // Adjust the number here to show more/less users
+                        const topScores = sortedScores.slice(0, 10); // Adjust the number here to show more/less users
 
                         const ulElement = document.getElementById("scores");
                         if (!ulElement) return;
