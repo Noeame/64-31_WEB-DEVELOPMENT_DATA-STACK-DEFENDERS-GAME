@@ -1,0 +1,53 @@
+<!--
+   This HTML file represents the Leaderboard page for the "Bridge the Gap" game.
+   Users can navigate back to the home page, retry a level, or access the leaderboard. The page fetches and displays user scores from Firebase.
+   Bootstrap is used for styling and layout.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="leaderboard.css" />
+    <!-- <link rel="stylesheet" href="landing.css"> -->
+    <title>How to Play!</title>
+</head>
+
+<body>
+<div class="d-flex flex col justify-content-center">
+    <div class="banner my-1">
+        <h3 class="above-text"> Let's Play!</h3>
+        <img src="images/banner3.png" alt="banner image" class="img-fluid" />
+        <div class="picture-text">
+            <ol>
+                <li><strong>Register/Login:</strong> Register with your name or login to continue.</li>
+                <li><strong>Start Level:</strong> Begin with your character on a platform, facing another platform.</li>
+                <li><strong>Extend Stick:</strong> Hold the mouse to extend a stick, release to stop.</li>
+                <li><strong>Bridge Gap:</strong> Stick must be long enough to reach the next platform. Too short or too long results in failure.</li>
+                <li><strong>Cross Over:</strong> Character crosses over automatically on a successful bridge.</li>
+            </ol>
+        </div>
+        <div class="below-icons">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="landing.html"><img src="images/home.png" alt="home button" width="80" height="80"></a>
+                <a href="level-select.html"><img src="images/tryagain.png" alt="try again" width="80" height="80"></a>
+                <a href="leaderboard.html"><img src="images/leaderboardbutton.png" alt="leaderboard pic" width="80" height="80"></a>
+            </div>
+        </div>
+        <audio controls autoplay style="display: none;">
+            <source src="audio/bgmusic.mp3" >
+            Your browser does not support the audio element.
+        </audio>
+
+</body>
+</html>
