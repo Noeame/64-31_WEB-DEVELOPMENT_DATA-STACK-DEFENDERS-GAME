@@ -14,16 +14,16 @@
 <body>
 <div class="container-fluid my-3">
     <div class="d-flex justify-content-between align-items-center">
-        <img src="images/soundON.png" alt="music pic" width="50" height="50">
-        <img src="images/googlebutton.png" alt="music pic" width="50" height="50">
+        <img id="playButton" src="images/soundON.png" alt="Play Music" width="50" height="50">
+        <img id="pauseButton" src="images/soundOFF.png" alt="Pause Music" width="50" height="50">
     </div>
     <div class="d-flex mt-1 justify-content-between align-items-center">
         <img src="images/soundOFF.png" alt="no music pic" width="50" height="50">
         <img src="images/noADS.png" alt="music pic" width="70" height="70">
     </div>
 
-    <div class="text-center my-3 text-warningn gap-text">
-        <h6>Game Name Here</h6>
+        <div class="text-center my-3 text-warningn gap-text">
+        <h6>Eco Guard Hero</h6>
     </div>
 
     <div class="d-flex mt-1 justify-content-center align-items-center my-2">
@@ -36,25 +36,42 @@
         <a href="login.html"><img src="images/loginbutton.png"  alt="play button pic" width="150" height="80"></a>
         <a href="register.html"><img src="images/registerbutton.png" alt="play button pic" width="150" height="80"></a>
 
-        <!-- Option to add the story behind the game, <img src="images/story.png" alt="story button pic" width="200 height=" 50"> -->
     </div>
-    <div class="d-flex justify-content-center align-items-center  my-4">
-        <img src="images/howtoplaybutton.png" alt="music pic" width="70" height="70">
-        <img src="images/leaderboardbutton.png" alt="leaderboard pic" width="70" height="70">
-        <img src="images/plus-bonus.png" alt="music pic" width="70" height="70">
+    <div class="d-flex mt-1 justify-content-center align-items-center my-2">
+        <a href="TowerGame/index.html"><img src="images/bonusGame.png"  alt="play button pic" width="150" height="80"></a>
+        <a href="register.html"><img src="images/story.png" alt="play button pic" width="150" height="80"></a>
+    </div>
 
+    <div class="d-flex justify-content-center align-items-center  my-4">
+        <a href="localisation.js"><img src="images/geoLocalisation.png" alt="music pic" width="70" height="75">
+            <img src="images/howtoplaybutton.png" alt="music pic" width="70" height="70">
+            <a href="leaderboard.html"><img src="images/leaderboardbutton.png" alt="leaderboard pic" width="70" height="70">
     </div>
 
 </div>
-<audio controls autoplay loop="true" style="display: none;">
-    <source src="audio/bgmusic.mp3" >
+<audio id="bgMusic" controls autoplay loop="true" style="display: none;">
+    <source src="audio/bgmusic.mp3">
     Your browser does not support the audio element.
 </audio>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+
+</script>
+
+<script>
+    document.getElementById('playButton').addEventListener('click', function() {
+        console.log("Play button clicked");
+        document.getElementById('bgMusic').play();
+    });
+
+    document.getElementById('pauseButton').addEventListener('click', function() {
+        console.log("Pause button clicked");
+        document.getElementById('bgMusic').pause();
+    });
+</script>
 
 </body>
 </html>
