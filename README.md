@@ -1,6 +1,6 @@
 # Eco Guard Hero Official Website
 <p align="center">
-<img src="[https://th.bing.com/th/id/OIG.9GVp_JL0.sNbwNXXNA_d?pid=ImgGn](https://ibb.co/hCsfZNj)" alt="Game Logo" width="30%" />
+<img src="[https://ibb.co/hCsfZNj)]" alt="Game Logo" width="30%" />
 </p>
 
 Welcome to the GitHub repository of Eco Guard Hero, an immersive game where you take on the role of the Eco Hero to reconnect and restore the planet Terra Verde!
