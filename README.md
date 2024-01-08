@@ -6,7 +6,7 @@
 Welcome to the GitHub repository of Eco Guard Hero, an immersive game where you take on the role of the Eco Hero to reconnect and restore the planet Terra Verde!
 
 ## Overview
-This website is your go-to source for everything about Eco Guard Hero. Explore the game’s rich environmental themes, view our engaging concept art, and get a sneak peek into early game designs. Stay informed about the latest updates and breakthroughs in the game's development.
+This website is your go-to source for everything about Eco Guard Hero. Explore the game’s rich environmental themes, view our engaging concept art, and get a sneak peek into early game designs. Stay informed about the latest updates and breakthroughs in the game's development. The game's concept draws significant inspiration from the innovative and engaging game "Bridge the Gap," showcased in the renowned js13kGames competition https://js13kgames.com/entries/bridge-the-gap. 
 
 ## Features
 **Static Website of Game:** Explore the static representation of Eco Guard Hero, providing a detailed overview of the game's universe, storyline, and characters.
