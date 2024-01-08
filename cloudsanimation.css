@@ -3,6 +3,7 @@
    The clouds are created using pseudo-elements and have different sizes
    and positions. They move horizontally across the screen in a continuous loop,
    creating a dynamic background effect.
+   code from: https://thecodeplayer.com/walkthrough/css-animated-cloud-effect
 */
 
 .clouds {
